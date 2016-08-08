@@ -4,7 +4,26 @@ from koslab.messengerbot.bot import BaseMessengerBot
 class ElizDoc(BaseMessengerBot):
 
     GREETING_TEXT = 'Hi I\'m Eliz, I\'ll be assessing your health today!'
-    STARTUP_MESSAGE = {'text':'Point me to your symptoms'}
+    STARTUP_MESSAGE = {
+            'text':'Point me to your symptoms',
+            'quick_replies':[
+                {
+                    'content_type': 'text',
+                    'title': 'headache',
+                    'payload': 'get_headache'
+                },
+                {
+                    'content_type': 'text',
+                    'title': 'nausea',
+                    'payload': 'get_nausea'
+                }
+            ] 
+    }
+
+    POSTBACK_HANDLERS = {
+        'get_headache': 'get_headache',
+        'get_nausea': 'get_nausea'
+    }
 
     PERSISTENT_MENU = [{
         'type': 'postback',
@@ -21,3 +40,10 @@ class ElizDoc(BaseMessengerBot):
         else:
             self.send(recipient=event['sender'], message={'text': 'errno'})
 
+    def get_nausea(self, event):
+        text = "holly nausea"
+        self.send(recipient=event['sender'], message={'text':text})
+
+    def get_headache(self, event):
+        text = "shit headache"
+        self.send(recipient=event['sender'], message={'text': text})
