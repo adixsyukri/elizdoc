@@ -13,9 +13,6 @@ class ElizDoc(BaseMessengerBot):
     }]
 
     def message_hook(self, event):
-        f = open('log','w')
-        f.write(event)
-        f.close()
         text = event['message'].get('text', '')
         if text.upper() == 'headache'.upper():
             self.send(recipient=event['sender'], message={'text': 'http://google.com/headache'})
