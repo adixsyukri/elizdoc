@@ -1,0 +1,10 @@
+webhook: webhook
+use_message_queue: false
+message_queue: amqp://guest:guest@localhost:5672//
+hub_verify_token: doktor_sila_cek_saya
+bots:
+  - page_id: 1116321631747161
+    title: ElizDoc
+    class: elizdoc:ElizDoc
+    access_token: EAAI5WFC3ZCncBAH8S8iZAduG1Avcn7iU9SNCf8v5jDOZAaaZBjWiwZCPolCpbj30HtfcbbCuYJsQ88ZBI8f7fyTW5QWUHRvbn1txGPd7zY5iGtMGAuFrpwT6TKraZCTxpyVVa2O6zT8VXpun3rjXK31nmFl7ZCCijGXFFEMZCv808wgZDZD
+
