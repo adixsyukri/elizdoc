@@ -4,7 +4,7 @@ from koslab.messengerbot.bot import BaseMessengerBot
 class ElizDoc(BaseMessengerBot):
 
     GREETING_TEXT = 'Hi I\'m Eliz, I\'ll be assessing your health today!'
-    STARTUP_MESSAGE = {'text':'Point me to your symptom'}
+    STARTUP_MESSAGE = {'text':'Point me to your symptoms'}
 
     PERSISTENT_MENU = [{
         'type': 'postback',
