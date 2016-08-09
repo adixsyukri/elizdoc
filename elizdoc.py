@@ -3,7 +3,30 @@ from koslab.messengerbot.bot import BaseMessengerBot
 #bot implementation
 class ElizDoc(BaseMessengerBot):
 
-    GREETING_TEXT = 'Hi I\'m Eliz, do you suspect to have dengue?'
+    GREETING_TEXT = {
+        "attachment":
+            {
+                "type":"template",
+                "payload":
+                    {
+                        "template_type":"generic",
+                        "elements":[
+                            {  
+                                "title":"Welcome to ElizDoc Bot",
+                                "image_url":"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Aedes_aegypti_feeding.jpg/800px-Aedes_aegypti_feeding.jpg",
+                                "subtitle":"We can help you analyze dengue fever if you have one",
+                                "buttons":[
+                                    {
+                                        "type":"postback",
+                                        "title":"Start Chatting",
+                                        "payload":"messengerbot.get_started"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+            }
+    }
     STARTUP_MESSAGE = {
             'text':'Do you have sudden high fever?',
             'quick_replies':[
