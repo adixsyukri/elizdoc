@@ -9,20 +9,19 @@ class ElizDoc(BaseMessengerBot):
             'quick_replies':[
                 {
                     'content_type': 'text',
-                    'title': 'yes high fever',
-                    'payload': 'get_yes_fever'
+                    'title': 'yes',
+                    'payload': 'get_fever'
                 },
                 {
                     'content_type': 'text',
-                    'title': 'no high fever',
-                    'payload': 'get_no_fever'
+                    'title': 'no',
+                    'payload': 'get_fever'
                 }
             ] 
     }
 
     POSTBACK_HANDLERS = {
-        'get_yes_fever': 'get_yes_fever',
-        'get_no_fever': 'get_no_fever'
+        'get_fever': 'get_fever',
     }
 
     PERSISTENT_MENU = [{
@@ -31,6 +30,10 @@ class ElizDoc(BaseMessengerBot):
         'payload': 'messengerbot.get_started'
     }]
 
+    def get_fever(self, event):
+        print event['message'].get('text','')
+
+    """
     def set_fever(self, event, text, session):
         if 'yes' in text:
             session.set('fever','true')
@@ -53,7 +56,7 @@ class ElizDoc(BaseMessengerBot):
             ]
         }
         self.send(recipient=event['sender'], message=headache)
-        
+     
     def set_headache(self, event, text, session):
         if 'yes' in text:
             session.set('headache','true')
@@ -207,11 +210,12 @@ class ElizDoc(BaseMessengerBot):
         response = { 'text': 'You are suspected to have dengue\nWe are setting up appointment for you' }
 
         self.send(recipient=evet['sender'], message=response)
-
+    """
     def message_hook(self, event):
 
         session = self.get_session(event)
         text = event['message'].get('text','')
+        """
         if 'fever' in text:
             self.set_fever(event, text, session)
 
@@ -235,3 +239,4 @@ class ElizDoc(BaseMessengerBot):
 
         if 'rash' in text:
             self.set_rash(event, text, session)
+        """
