@@ -31,53 +31,182 @@ class ElizDoc(BaseMessengerBot):
         'payload': 'messengerbot.get_started'
     }]
 
-    def set_fever(text, session):
+    def set_fever(self, text, session):
         if 'yes' in text:
             session.set('fever','true')
         else:
             session.set('fever','false')
         
-    def set_headache(text, session):
+        headache = { 
+            'text':'Do you have severe headaches?',
+            'quick_replies':[ 
+                {
+                    'content_type': 'text',
+                    'title': 'yes severe headache',
+                    'payload': 'get_severe_headache'
+                },
+                {
+                    'content_type': 'text',
+                    'title': 'no headache',
+                    'payload': 'get_no_headache'
+                }
+            ]
+        }
+        self.send(recipient=event['sender'], message=headache)
+        
+    def set_headache(self, text, session):
         if 'yes' in text:
             session.set('headache','true')
         else:
             session.set('headache','false')
 
-    def set_eyes(text, session):
+        eyes = {
+            'text':'Pain behind the eyes?',
+            'quick_replies': [
+                {
+                    'content_type': 'text',
+                    'title': 'yes eyes pain',
+                    'payload': 'get_eyes_pain'
+                },
+                {
+                    'content_type': 'text',
+                    'title': 'no eyes pain',
+                    'payload': 'get_no_pain'
+                }
+            ]
+        }
+            
+        self.send(recipient=event['sender'], message=eyes)
+
+    def set_eyes(self, text, session):
         if 'yes' in text:
             session.set('eyes','true')
         else:
             session.set('eyes','false')
+        
+        joint_muscle = {
+            'text':'Experiencing severe joint and muscle pain?',
+            'quick_replies': [
+                {
+                    'content_type': 'text',
+                    'title': 'yes joint and muscle pain',
+                    'payload': 'get_yes_joint_muscle'
+                },
+                {
+                    'content_type': 'text',
+                    'title': 'no joint and muscle pain',
+                    'payload': 'get_no_joint_muscle'
+                }
+            ]
+        }      
+            
+        self.send(recipient=event['sender'], message=joint_muscle)
 
-    def set_joint_muscle(text, session):
+    def set_joint_muscle(self, text, session):
         if 'yes' in text:
             session.set('muscle','true')
         else:
             session.set('muscle','false')
+            
+        fatigue = {
+            'text':'Do you feel fatigue?',
+            'quick_replies': [
+                {
+                    'content_type': 'text',
+                    'title': 'yes fatigue',
+                    'payload': 'get_yes_fatigue'
+                },
+                {
+                    'content_type': 'text',
+                    'title': 'no fatigue',
+                    'payload': 'get_no_fatigue'
+                }
+            ]
+        }
+            
+        self.send(recipient=event['sender'], message=fatigue)
 
-    def set_fatigue(text, session):
+    def set_fatigue(self, text, session):
         if 'yes' in text:
             session.set('fatigue','true')
         else:
             session.set('fatigue','false')
+            
+        nausea = {
+            'text':'How about nausea?',
+            'quick_replies': [
+                {
+                    'content_type': 'text',
+                    'title': 'yes nausea',
+                    'payload': 'get_yes_nausea'
+                },
+                {
+                    'content_type': 'text',
+                    'title': 'no nausea',
+                    'payload': 'get_no_nausea'
+                }
+            ]
+        }
 
-    def set_nausea(text, session):
+        self.send(recipient=event['sender'], message=fatigue)
+
+    def set_nausea(self, text, session):
         if 'yes' in text:
             session.set('nausea','true')
         else:
             session.set('nausea','false')
+        
+        vomitting = {
+            'text':'Do you experience vomitting?',
+            'quick_replies': [
+                {   
+                    'content_type': 'text',
+                    'title': 'yes vomitting',
+                    'payload': 'get_yes_vomitting'
+                },
+                {
+                    'content_type': 'text',
+                    'title': 'no vomitting',
+                    'payload': 'get_no_vomitting'
+                }
+            ]
+        }
 
-    def set_vomitting(text, session):
+        self.send(recipient=event['sender'], message=vomitting)
+
+    def set_vomitting(self, text, session):
         if 'yes' in text:
             session.set('vomitting','true')
         else:
             session.set('vomitting','false')
+        
+        rash = {
+            'text':'Do you notice any skin rash?',
+            'quick_replies': [
+                {
+                    'content_type': 'text',
+                    'title': 'yes skin rash',
+                    'payload': 'get_yes_rash'
+                },
+                {
+                    'content_type': 'text',
+                    'title': 'no skin rash',
+                    'payload': 'get_no_rash'
+                }
+            ]
+        }   
 
-    def set_rash(text, session):
+        self.send(recipient=event['sender'], message=rash)
+
+    def set_rash(self, text, session):
         if 'yes' in text:
             session.set('rash','true')
         else:
             session.set('rash','false')
+        
+        response = { 'text': 'You are suspected to have dengue\nWe are setting up appointment for you' }
+
+        self.send(recipient=evet['sender'], message=response)
 
     def message_hook(self, event):
 
@@ -85,147 +214,24 @@ class ElizDoc(BaseMessengerBot):
         text = event['message'].get('text','')
         if 'fever' in text:
             self.set_fever(text,session)
-            headache = { 
-                'text':'Do you have severe headaches?',
-                'quick_replies':[ 
-                    {
-                        'content_type': 'text',
-                        'title': 'yes severe headache',
-                        'payload': 'get_severe_headache'
-                    },
-                    {
-                        'content_type': 'text',
-                        'title': 'no headache',
-                        'payload': 'get_no_headache'
-                    }
-                ]
-            }
-
-
-            self.send(recipient=event['sender'], message=headache)
 
         if 'headache' in text:
             self.set_headache(text,session)
-            eyes = {
-                'text':'Pain behind the eyes?',
-                'quick_replies': [
-                    {
-                        'content_type': 'text',
-                        'title': 'yes eyes pain',
-                        'payload': 'get_eyes_pain'
-                    },
-                    {
-                        'content_type': 'text',
-                        'title': 'no eyes pain',
-                        'payload': 'get_no_pain'
-                    }
-                ]
-            }
-            
-            self.send(recipient=event['sender'], message=eyes)
 
         if 'eyes' in text:
             self.set_eyes(text,session)
-            joint_muscle = {
-                'text':'Experiencing severe joint and muscle pain?',
-                'quick_replies': [
-                    {
-                        'content_type': 'text',
-                        'title': 'yes joint and muscle pain',
-                        'payload': 'get_yes_joint_muscle'
-                    },
-                    {
-                        'content_type': 'text',
-                        'title': 'no joint and muscle pain',
-                        'payload': 'get_no_joint_muscle'
-                    }
-                ]
-            }      
-            
-            self.send(recipient=event['sender'], message=joint_muscle)
 
         if 'joint' in text:
             self.set_joint_muscle(text,session)
-            fatigue = {
-                'text':'Do you feel fatigue?',
-                'quick_replies': [
-                    {
-                        'content_type': 'text',
-                        'title': 'yes fatigue',
-                        'payload': 'get_yes_fatigue'
-                    },
-                    {
-                        'content_type': 'text',
-                        'title': 'no fatigue',
-                        'payload': 'get_no_fatigue'
-                    }
-                ]
-            }
-            
-            self.send(recipient=event['sender'], message=fatigue)
 
         if 'fatigue' in text:
             self.set_fatigue(text, session)
-            nausea = {
-                'text':'How about nausea?',
-                'quick_replies': [
-                    {
-                        'content_type': 'text',
-                        'title': 'yes nausea',
-                        'payload': 'get_yes_nausea'
-                    },
-                    {
-                        'content_type': 'text',
-                        'title': 'no nausea',
-                        'payload': 'get_no_nausea'
-                    }
-                ]
-            }
-
-            self.send(recipient=event['sender'], message=fatigue)
 
         if 'nausea' in text:
             self.set_nausea(text, session)
-            vomitting = {
-                'text':'Do you experience vomitting?',
-                'quick_replies': [
-                    {   
-                        'content_type': 'text',
-                        'title': 'yes vomitting',
-                        'payload': 'get_yes_vomitting'
-                    },
-                    {
-                        'content_type': 'text',
-                        'title': 'no vomitting',
-                        'payload': 'get_no_vomitting'
-                    }
-                ]
-            }
-
-            self.send(recipient=event['sender'], message=vomitting)
 
         if 'vomitting' in text:
             self.set_vomitting(text, session)
-            rash = {
-                'text':'Do you notice any skin rash?',
-                'quick_replies': [
-                    {
-                        'content_type': 'text',
-                        'title': 'yes skin rash',
-                        'payload': 'get_yes_rash'
-                    },
-                    {
-                        'content_type': 'text',
-                        'title': 'no skin rash',
-                        'payload': 'get_no_rash'
-                    }
-                ]
-            }   
-
-            self.send(recipient=event['sender'], message=rash)
 
         if 'rash' in text:
             self.set_rash(text, session)
-            response = { 'text': 'You are suspected to have dengue\nWe are setting up appointment for you' }
-
-            self.send(recipient=evet['sender'], message=response)
