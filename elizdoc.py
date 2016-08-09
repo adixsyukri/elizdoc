@@ -4,7 +4,8 @@ from koslab.messengerbot.bot import BaseMessengerBot
 class ElizDoc(BaseMessengerBot):
     
     POSTBACK_HANDLERS = {
-        'start_chatting':'start_chatting'
+        'start_chatting':'start_chatting',
+        'set_appointment':'set_appointment'
     }
     
     GREETING_TEXT = 'Hi, I\'m ElizDoc, I\'ll help you determine whether you have dengue or just a normal fever'
@@ -66,7 +67,12 @@ class ElizDoc(BaseMessengerBot):
         }
 
         self.send(recipient=event['sender'], message=text)
-    
+
+    def set_appointment(self, event):
+        text = { 'text': 'Your appointment have been set, Thank You'}
+
+        self.send(recipient=event['sender'], message=text)
+ 
     def check_fever(self, event):
         session = self.get_session(event)
 
