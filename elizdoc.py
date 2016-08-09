@@ -10,20 +10,7 @@ class ElizDoc(BaseMessengerBot):
                 'payload': {
                     'url':'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Aedes_aegypti_feeding.jpg/800px-Aedes_aegypti_feeding.jpg'   
                 }
-            },
-            'text':'Do you experience sudden high fever?',
-            'quick_replies':[
-                {
-                    'content_type': 'text',
-                    'title': 'yes',
-                    'payload': 'check_fever'
-                },
-                {
-                    'content_type': 'text',
-                    'title': 'no',
-                    'payload': 'check_fever'
-                }
-            ] 
+            }
     }
 
     PERSISTENT_MENU = [{
