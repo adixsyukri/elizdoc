@@ -55,12 +55,36 @@ class ElizDoc(BaseMessengerBot):
         else:
             session.set('muscle','false')
 
+    def set_fatigue(text, session):
+        if 'yes' in text:
+            session.set('fatigue','true')
+        else:
+            session.set('fatigue','false')
+
+    def set_nausea(text, session):
+        if 'yes' in text:
+            session.set('nausea','true')
+        else:
+            session.set('nausea','false')
+
+    def set_vomitting(text, session):
+        if 'yes' in text:
+            session.set('vomitting','true')
+        else:
+            session.set('vomitting','false')
+
+    def set_rash(text, session):
+        if 'yes' in text:
+            session.set('rash','true')
+        else:
+            session.set('rash','false')
+
     def message_hook(self, event):
 
         session = self.get_session(event)
         text = event['message'].get('text','')
         if 'fever' in text:
-            set_fever(text,session)
+            self.set_fever(text,session)
             headache = { 
                 'text':'Do you have severe headaches?',
                 'quick_replies':[ 
@@ -81,7 +105,7 @@ class ElizDoc(BaseMessengerBot):
             self.send(recipient=event['sender'], message=headache)
 
         if 'headache' in text:
-            set_headache(text,session)
+            self.set_headache(text,session)
             eyes = {
                 'text':'Pain behind the eyes?',
                 'quick_replies': [
@@ -101,7 +125,7 @@ class ElizDoc(BaseMessengerBot):
             self.send(recipient=event['sender'], message=eyes)
 
         if 'eyes' in text:
-            set_eyes(text,session)
+            self.set_eyes(text,session)
             joint_muscle = {
                 'text':'Experiencing severe joint and muscle pain?',
                 'quick_replies': [
@@ -121,7 +145,7 @@ class ElizDoc(BaseMessengerBot):
             self.send(recipient=event['sender'], message=joint_muscle)
 
         if 'joint' in text:
-            set_joint_muscle(text,session)
+            self.set_joint_muscle(text,session)
             fatigue = {
                 'text':'Do you feel fatigue?',
                 'quick_replies': [
@@ -141,7 +165,7 @@ class ElizDoc(BaseMessengerBot):
             self.send(recipient=event['sender'], message=fatigue)
 
         if 'fatigue' in text:
-            set_fatigue(text, session)
+            self.set_fatigue(text, session)
             nausea = {
                 'text':'How about nausea?',
                 'quick_replies': [
@@ -161,7 +185,7 @@ class ElizDoc(BaseMessengerBot):
             self.send(recipient=event['sender'], message=fatigue)
 
         if 'nausea' in text:
-            set_nausea(text, session)
+            self.set_nausea(text, session)
             vomitting = {
                 'text':'Do you experience vomitting?',
                 'quick_replies': [
@@ -181,7 +205,7 @@ class ElizDoc(BaseMessengerBot):
             self.send(recipient=event['sender'], message=vomitting)
 
         if 'vomitting' in text:
-            set_vomitting(text, session)
+            self.set_vomitting(text, session)
             rash = {
                 'text':'Do you notice any skin rash?',
                 'quick_replies': [
@@ -201,7 +225,7 @@ class ElizDoc(BaseMessengerBot):
             self.send(recipient=event['sender'], message=rash)
 
         if 'rash' in text:
-            set_rash(text, session)
+            self.set_rash(text, session)
             response = { 'text': 'You are suspected to have dengue\nWe are setting up appointment for you' }
 
             self.send(recipient=evet['sender'], message=response)
