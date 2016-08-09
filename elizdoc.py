@@ -3,26 +3,26 @@ from koslab.messengerbot.bot import BaseMessengerBot
 #bot implementation
 class ElizDoc(BaseMessengerBot):
 
-    GREETING_TEXT = 'Hi I\'m Eliz, I\'ll be assessing your health today!'
+    GREETING_TEXT = 'Hi I\'m Eliz, do you suspect to have dengue?'
     STARTUP_MESSAGE = {
-            'text':'Point me to your symptoms',
+            'text':'Do you have sudden high fever?',
             'quick_replies':[
                 {
                     'content_type': 'text',
-                    'title': 'headache',
-                    'payload': 'get_headache'
+                    'title': 'yes high fever',
+                    'payload': 'get_yes_fever'
                 },
                 {
                     'content_type': 'text',
-                    'title': 'nausea',
-                    'payload': 'get_nausea'
+                    'title': 'no high fever',
+                    'payload': 'get_no_fever'
                 }
             ] 
     }
 
     POSTBACK_HANDLERS = {
-        'get_headache': 'get_headache',
-        'get_nausea': 'get_nausea'
+        'get_yes_fever': 'get_yes_fever',
+        'get_no_fever': 'get_no_fever'
     }
 
     PERSISTENT_MENU = [{
@@ -32,13 +32,12 @@ class ElizDoc(BaseMessengerBot):
     }]
 
     def message_hook(self, event):
-        text = event['message'].get('text', '')
-        if text.upper() == 'headache'.upper():
-            self.send(recipient=event['sender'], message={'text': 'http://google.com/headache'})
-        elif text.upper() == 'nausea'.upper():
-            self.send(recipient=event['sender'], message={'text': 'http://google.com/nausea'})
-        else:
-            self.send(recipient=event['sender'], message={'text': 'errno'})
+
+        session = self.get_session(event)
+ 
+        text = event['message'].get('text','')
+
+        self.send(recipient=event['sender'], message={'text': 'errno'})
 
     def get_nausea(self, event):
         text = "holly nausea"
