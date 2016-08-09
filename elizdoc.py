@@ -2,16 +2,35 @@ from koslab.messengerbot.bot import BaseMessengerBot
 
 #bot implementation
 class ElizDoc(BaseMessengerBot):
-
+    
+    POSTBACK_HANDLERS = {
+        'start_chatting':'start_chatting'
+    }
+    
     GREETING_TEXT = 'Hi, I\'m ElizDoc, I\'ll help you determine whether you have dengue or just a normal fever'
     STARTUP_MESSAGE = {
             'attachment': {
-                'type':'image',
+                'type':'template',
                 'payload': {
-                    'url':'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Aedes_aegypti_feeding.jpg/800px-Aedes_aegypti_feeding.jpg'   
+                    'template_type':'generic',
+                    'elements':[
+                        {
+                            'title':'ElizDoc here to help you, \"Say no to Dengue\"',
+                            'image_url': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Aedes_aegypti_feeding.jpg/800px-Aedes_aegypti_feeding.jpg',
+                            'subtitle':'Worried you might catch dengue fever?',
+                            'button':[
+                                {
+                                    'type':'postback',
+                                    'title':'Start Chatting',
+                                    'payload':'start_chatting'
+                                }
+                            ]
+                        }
+                    ]
                 }
             }
     }
+
 
     PERSISTENT_MENU = [{
         'type': 'postback',
@@ -29,6 +48,25 @@ class ElizDoc(BaseMessengerBot):
         'vomit_rash':'vomit_rash'
     }
 
+    def start_chatting(self, event):
+        text = {             
+            'text':'Do you experience sudden high fever?',
+            'quick_replies':[
+                {
+                    'content_type': 'text',
+                    'title': 'yes',
+                    'payload': 'check_fever'
+                },
+                {
+                    'content_type': 'text',
+                    'title': 'no',
+                    'payload': 'check_fever'
+                }
+            ]
+        }
+
+        self.send(recipient=event['sender'], message=text)
+    
     def check_fever(self, event):
         session = self.get_session(event)
 
