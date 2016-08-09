@@ -196,7 +196,7 @@ class ElizDoc(BaseMessengerBot):
 
         self.send(recipient=event['sender'], message=vomitting)
         
-    def vomit_rash(self, text, session):
+    def vomit_rash(self, event):
         session = self.get_session(event)
 
         text = event['message'].get('text','')
