@@ -18,7 +18,7 @@ class ElizDoc(BaseMessengerBot):
                             'title':'ElizDoc here to help you, \"Say no to Dengue\"',
                             'image_url': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Aedes_aegypti_feeding.jpg/800px-Aedes_aegypti_feeding.jpg',
                             'subtitle':'Worried you might catch dengue fever?',
-                            'button':[
+                            'buttons':[
                                 {
                                     'type':'postback',
                                     'title':'Start Chatting',
