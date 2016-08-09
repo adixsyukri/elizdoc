@@ -236,9 +236,67 @@ class ElizDoc(BaseMessengerBot):
         else:
             session.set('vomit_rash','false')
         
-        response = { 'text': 'You are suspected to have dengue\nWe are setting up appointment for you for blood checkup'}
+        response = { 'text': 'You are suspected to have dengue\n\nWe are setting up appointment with you for further checkup, select from below'}
+
+        clinics = {
+            'attachment': {
+                'type':'template',
+                'payload': {
+                    'template_type':'generic',
+                    'elements':[
+                        {
+                            'title':'Hospital Putrajaya',
+                            'subtitle':'Wilayah Persekutuan Putrajaya',
+                            'buttons':[
+                                {
+                                    'type':'postback',
+                                    'title':'Set Appointment',
+                                    'payload':'set_appointment'
+                                }
+                            ]
+                        },
+                        {
+                            'title':'Hospital Serdang',
+                            'subtitle':'Serdang, Selangor',
+                            'buttons':[
+                                {
+                                    'type':'postback',
+                                    'title':'Set Appointment',
+                                    'payload':'set_appointment'
+                                }
+                            ]
+                        },
+                        {
+                            'title':'Hospital Selayang',
+                            'subtitle':'Selayang, Selangor',
+                            'buttons':[
+                                {
+                                    'type':'postback',
+                                    'title':'Set Appointment',
+                                    'payload':'set_appointment'
+                                }
+                            ]
+                        },
+                        {
+                            'title':'Hospital Columbia',
+                            'subtitle':'Puchong, Selangor',
+                            'buttons':[
+                                {
+                                    'type':'postback',
+                                    'title':'Set Appointment',
+                                    'payload':'set_appointment'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+
+        
 
         self.send(recipient=event['sender'], message=response)
+        self.send(recipient=event['sender'], message=clinics)
 
 
     def quick_reply(self, event):
