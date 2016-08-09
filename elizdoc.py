@@ -61,7 +61,7 @@ class ElizDoc(BaseMessengerBot):
         text = event['message'].get('text','')
         if 'fever' in text:
             set_fever(text,session)
-            headache = { 
+            headache = [ 
                 'text':'Do you have severe headaches?',
                 'quick_replies': 
                 {
@@ -74,13 +74,13 @@ class ElizDoc(BaseMessengerBot):
                     'title': 'no headache',
                     'payload': 'get_no_headache'
                 }
-            }
+            ]
 
             self.send(recipient=event['sender'], message=headache)
 
         if 'headache' in text:
             set_headache(text,session)
-            eyes = {
+            eyes = [
                 'text':'Pain behind the eyes?',
                 'quick_replies':
                 {
@@ -93,14 +93,13 @@ class ElizDoc(BaseMessengerBot):
                     'title': 'no eyes pain',
                     'payload': 'get_no_pain'
                 }
-
-            }
+            ]
             
             self.send(recipient=event['sender'], message=eyes)
 
         if 'eyes' in text:
             set_eyes(text,session)
-            joint_muscle = {
+            joint_muscle = [
                 'text':'Experiencing severe joint and muscle pain?',
                 'quick_replies':
                 {
@@ -113,13 +112,13 @@ class ElizDoc(BaseMessengerBot):
                     'title': 'no joint and muscle pain',
                     'payload': 'get_no_joint_muscle'
                 }
-            }
+            ]
             
            self.send(recipient=event['sender'], message=joint_muscle)
 
         if 'joint' in text:
             set_joint_muscle(text,session)
-            fatigue = {
+            fatigue = [
                 'text':'Do you feel fatigue?',
                 'quick_replies':
                 {
@@ -132,13 +131,13 @@ class ElizDoc(BaseMessengerBot):
                     'title': 'no fatigue',
                     'payload': 'get_no_fatigue'
                 }
-            }
+            ]
             
             self.send(recipient=event['sender'], message=fatigue)
 
         if 'fatigue' in text:
             set_fatigue(text, session)
-            nausea = {
+            nausea = [
                 'text':'How about nausea?',
                 'quick_replies':
                 {
@@ -151,13 +150,13 @@ class ElizDoc(BaseMessengerBot):
                     'title': 'no nausea',
                     'payload': 'get_no_nausea'
                 }
-            }
+            ]
         
             self.send(recipient=event['sender'], message=fatigue)
 
         if 'nausea' in text:
             set_nausea(text, session)
-            vomitting = {
+            vomitting = [
                 'text':'Do you experience vomitting?',
                 'quick_replies':
                 {
@@ -170,13 +169,13 @@ class ElizDoc(BaseMessengerBot):
                     'title': 'no vomitting',
                     'payload': 'get_no_vomitting'
                 }
-            }
+            ]
 
             self.send(recipient=event['sender'], message=vomitting)
 
         if 'vomitting' in text:
             set_vomitting(text, session)
-            rash = {
+            rash = [
                 'text':'Do you notice any skin rash?',
                 'quick_replies':
                 {
@@ -189,7 +188,7 @@ class ElizDoc(BaseMessengerBot):
                     'title': 'no skin rash',
                     'payload': 'get_no_rash'
                 }
-            }
+            ]
 
             self.send(recipient=event['sender'], message=rash)
 
