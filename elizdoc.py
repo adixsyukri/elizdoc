@@ -207,7 +207,7 @@ class ElizDoc(BaseMessengerBot):
         
         response = { 'text': 'You are suspected to have dengue\nWe are setting up appointment for you for blood checkup'}
 
-        self.send(recipient=evet['sender'], message=response)
+        self.send(recipient=event['sender'], message=response)
 
 
     def quick_reply(self, event):
