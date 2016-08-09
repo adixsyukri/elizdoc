@@ -31,7 +31,7 @@ class ElizDoc(BaseMessengerBot):
         'payload': 'messengerbot.get_started'
     }]
 
-    def set_fever(self, text, session):
+    def set_fever(self, event, text, session):
         if 'yes' in text:
             session.set('fever','true')
         else:
@@ -54,7 +54,7 @@ class ElizDoc(BaseMessengerBot):
         }
         self.send(recipient=event['sender'], message=headache)
         
-    def set_headache(self, text, session):
+    def set_headache(self, event, text, session):
         if 'yes' in text:
             session.set('headache','true')
         else:
@@ -78,7 +78,7 @@ class ElizDoc(BaseMessengerBot):
             
         self.send(recipient=event['sender'], message=eyes)
 
-    def set_eyes(self, text, session):
+    def set_eyes(self, event, text, session):
         if 'yes' in text:
             session.set('eyes','true')
         else:
@@ -102,7 +102,7 @@ class ElizDoc(BaseMessengerBot):
             
         self.send(recipient=event['sender'], message=joint_muscle)
 
-    def set_joint_muscle(self, text, session):
+    def set_joint_muscle(self, event, text, session):
         if 'yes' in text:
             session.set('muscle','true')
         else:
@@ -126,7 +126,7 @@ class ElizDoc(BaseMessengerBot):
             
         self.send(recipient=event['sender'], message=fatigue)
 
-    def set_fatigue(self, text, session):
+    def set_fatigue(self, event, text, session):
         if 'yes' in text:
             session.set('fatigue','true')
         else:
@@ -150,7 +150,7 @@ class ElizDoc(BaseMessengerBot):
 
         self.send(recipient=event['sender'], message=fatigue)
 
-    def set_nausea(self, text, session):
+    def set_nausea(self, event, text, session):
         if 'yes' in text:
             session.set('nausea','true')
         else:
@@ -174,7 +174,7 @@ class ElizDoc(BaseMessengerBot):
 
         self.send(recipient=event['sender'], message=vomitting)
 
-    def set_vomitting(self, text, session):
+    def set_vomitting(self, event, text, session):
         if 'yes' in text:
             session.set('vomitting','true')
         else:
@@ -213,25 +213,25 @@ class ElizDoc(BaseMessengerBot):
         session = self.get_session(event)
         text = event['message'].get('text','')
         if 'fever' in text:
-            self.set_fever(text,session)
+            self.set_fever(event, text, session)
 
         if 'headache' in text:
-            self.set_headache(text,session)
+            self.set_headache(event, text, session)
 
         if 'eyes' in text:
-            self.set_eyes(text,session)
+            self.set_eyes(event, text, session)
 
         if 'joint' in text:
-            self.set_joint_muscle(text,session)
+            self.set_joint_muscle(event, text, session)
 
         if 'fatigue' in text:
-            self.set_fatigue(text, session)
+            self.set_fatigue(event, text, session)
 
         if 'nausea' in text:
-            self.set_nausea(text, session)
+            self.set_nausea(event, text, session)
 
         if 'vomitting' in text:
-            self.set_vomitting(text, session)
+            self.set_vomitting(event, text, session)
 
         if 'rash' in text:
-            self.set_rash(text, session)
+            self.set_rash(event, text, session)
